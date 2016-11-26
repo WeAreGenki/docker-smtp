@@ -20,4 +20,4 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 
 EXPOSE 25
 
-CMD ["exim", "-bd", "-q15m"]
+CMD ["exim", "-bdf", "-q15m"]
