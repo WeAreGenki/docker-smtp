@@ -20,7 +20,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	\
 	# && chown -R exim:exim /var/log/exim /usr/lib/exim /var/spool/exim \
 	# && chmod 0511 /usr/sbin/exim \
-	# && setcap cap_net_bind_service=+ep /usr/sbin/exim \
+	&& setcap cap_net_bind_service=+ep /usr/sbin/exim \
 	&& apk del --purge .build-deps \
 	\
 	# Unset SUID on all executables
