@@ -19,6 +19,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	# Unset SUID on all executables
 	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
 
+USER exim
 EXPOSE 25
 
 CMD ["exim", "-bdf", "-q15m"]
