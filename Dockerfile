@@ -14,11 +14,10 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
 	# Forward logs to docker log collector
-	# && ln -sf /dev/stdout /var/log/exim/main \ # FIXME: Temporary workaround
-	&& ln -sf /dev/stderr /var/log/exim/main \
+	&& ln -sf /dev/stdout /var/log/exim/main \
 	&& ln -sf /dev/stderr /var/log/exim/panic \
 	&& ln -sf /dev/stderr /var/log/exim/reject \
-	# && chown -R exim:exim /var/log/exim /usr/lib/exim /var/spool/exim \
+	&& chown -R exim /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
 	&& setcap cap_net_bind_service=+ep /usr/sbin/exim \
 	&& apk del --purge .build-deps \
@@ -41,6 +40,7 @@ LABEL org.label-schema.version=$VERSION \
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
+USER exim
 EXPOSE 25
 
 CMD ["exim", "-bdf", "-q15m"]
