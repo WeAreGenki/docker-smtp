@@ -7,7 +7,7 @@ fi
 
 # Make exim become pid 1 and switch to exim user
 if [ "$1" = 'exim' ] && [ "$(id -u)" = '0' ]; then
-	chown -R exim:exim .
+	chown -R exim:exim /usr/sbin/exim
   exec su-exec exim "$0" "$@"
 fi
 
