@@ -38,7 +38,7 @@ LABEL org.label-schema.version=$VERSION \
 			org.label-schema.vcs-url="https://github.com/WeAreGenki/smtp" \
 			org.label-schema.vendor="We Are Genki"
 
-WORKDIR /var/spool/exim
+WORKDIR /var/log/exim
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
