@@ -10,6 +10,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 		exim \
 	\
 		# Forward logs to docker log collector
+		&& mkdir -p /var/log/exim \
 		&& ln -sf /dev/stdout /var/log/exim/mainlog \
 	\
 	# Unset SUID on all executables
