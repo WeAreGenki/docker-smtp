@@ -9,12 +9,12 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
-	&& chown -R exim: /dkim /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
 	# Forward logs to docker log collector
 	&& ln -sf /dev/stdout /var/log/exim/main \
 	&& ln -sf /dev/stderr /var/log/exim/panic \
 	&& ln -sf /dev/stderr /var/log/exim/reject \
+	&& chown -R exim: /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
 	# Unset SUID on all executables
 	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
