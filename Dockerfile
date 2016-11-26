@@ -8,6 +8,7 @@ MAINTAINER Max Milton <max@wearegenki.com>
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
+		# su-exec \
 	&& apk add --no-cache --virtual .build-deps \
 		libcap \
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
@@ -25,7 +26,12 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	# Unset SUID on all executables
 	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
 
+COPY exim.conf /etc/exim/exim.conf
+
 USER exim
 EXPOSE 25
+
+# COPY docker-entrypoint.sh /usr/local/bin/
+# ENTRYPOINT ["docker-entrypoint.sh"]
 
 CMD ["exim", "-bdf", "-q15m"]
