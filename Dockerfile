@@ -11,7 +11,8 @@ ARG VCS_REF
 LABEL org.label-schema.version=$VERSION \
 			org.label-schema.build-date=$BUILD_DATE \
 			org.label-schema.vcs-ref=$VCS_REF \
-			org.label-schema.vcs-url="https://github.com/WeAreGenki/smtp"
+			org.label-schema.vcs-url="https://github.com/WeAreGenki/smtp" \
+			org.label-schema.vendor="We Are Genki"
 
 # FIXME: Once the exim package is out of testing, update this!
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
