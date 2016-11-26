@@ -4,8 +4,8 @@
 FROM alpine:edge
 MAINTAINER Max Milton <max@wearegenki.com>
 
-ARG VCS_REF \
-		VERSION
+ARG VCS_REF
+ARG VERSION
 
 LABEL org.label-schema.version=$VERSION \
 			org.label-schema.build-date=$BUILD_DATE \
