@@ -1,10 +1,10 @@
 # SMTP Relay Docker Image
 
-[![](https://badge.imagelayers.io/wearegenki/smtp.svg)](https://imagelayers.io/?images=wearegenki/smtp:latest 'Get your own badge on imagelayers.io') [![](https://images.microbadger.com/badges/version/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own commit badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/wearegenki/smtp.svg)](https://microbadger.com/images/wearegenki/smtp "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own commit badge on microbadger.com")
 
 Minimal SMTP relay docker using Exim4 running on an Alpine Linux base. The default configuration is as a smarthost relay — for sending emails from your docker cluster to an email delivery service like Sparkpost, SendGrid, or Amazon Simple Email Service.
 
-Thanks to Alpine Linux the overall image size is a tiny 8 MB (compared to 175 for the same thing using Debian)!
+Thanks to Alpine Linux the _uncompressed_ image size is a tiny 8 MB (compared to 175 MB using Debian)!
 
 **TIP:** If you need to get emails from your other containers to this one, consider adding [sSMTP](https://wiki.debian.org/sSMTP) to your existing images. This way you don't need to set up anything fancy in your applications, just use Linux's standard way of sending emails via `/usr/sbin/sendmail`.
 
