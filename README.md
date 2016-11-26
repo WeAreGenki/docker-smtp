@@ -1,6 +1,33 @@
-# SMTP Docker Image
+# SMTP Relay Docker Image
 
-Exim4 based SMTP image. Usage is same as upstream [namshi/smtp image](https://hub.docker.com/r/namshi/smtp/).
+[![](https://badge.imagelayers.io/wearegenki/smtp.svg)](https://imagelayers.io/?images=wearegenki/smtp:latest 'Get your own badge on imagelayers.io') [![](https://images.microbadger.com/badges/version/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own commit badge on microbadger.com")
+
+Minimal SMTP relay docker using Exim4 running on an Alpine Linux base. The default configuration is as a smarthost relay — for sending emails from your docker cluster to an email delivery service like Sparkpost, SendGrid, or Amazon Simple Email Service.
+
+Thanks to Alpine Linux the overall image size is a tiny 8 MB (compared to 175 for the same thing using Debian)!
+
+**TIP:** If you need to get emails from your other containers to this one, consider adding [sSMTP](https://wiki.debian.org/sSMTP) to your existing images. This way you don't need to set up anything fancy in your applications, just use Linux's standard way of sending emails via `/usr/sbin/sendmail`.
+
+## Usage
+
+If you're on the command-line you can run:
+
+```
+docker run -d \
+  --name your-smtp \
+  -v /mnt/your-data-dir/smtp:/var/spool/exim:rw \
+  -e LOCAL_DOMAINS="@" \
+  -e RELAY_TO_DOMAINS="smtp.sparkpostmail.com : email.yourdomain.com" \
+  -e RELAY_FROM_HOSTS="192.168.0.0/16 ; *.yourdomain.com" \
+  -e SMARTHOST_HOST="smtp.sparkpostmail.com" \
+  -e SMARTHOST_PORT="587" \
+  -e SMARTHOST_PUBLIC_NAME="LOGIN" \
+  -e SMARTHOST_USERNAME="SMTP_Injection" \
+  -e SMARTHOST_PASSWORD="your_sparkpost_api_token" \
+  wearegenki/smtp:latest
+```
+
+**NOTE:** The separating delimiters are different for RELAY_TO_DOMAINS (: colons) and RELAY_FROM_HOSTS (; semicolons). Your username and password are probably your API key.
 
 ## Licence
 
