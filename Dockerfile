@@ -5,7 +5,7 @@ FROM alpine:edge
 MAINTAINER Max Milton <max@wearegenki.com>
 
 # FIXME: Once the exim package is out of testing, update this!
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN set -se echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
 		su-exec \
@@ -14,8 +14,8 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
 	# Forward logs to docker log collector
-	# && ln -sf /dev/stdout /var/log/exim/main \ # FIXME: Temporary workaround
-	&& ln -sf /dev/stderr /var/log/exim/main \
+	&& ln -sfv /dev/stdout /var/log/exim/main \ # FIXME: Temporary workaround
+	&& ln -sfv /dev/stderr /var/log/exim/main \
 	&& ln -sf /dev/stderr /var/log/exim/panic \
 	&& ln -sf /dev/stderr /var/log/exim/reject \
 	\
