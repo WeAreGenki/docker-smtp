@@ -9,6 +9,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
+	&& chown -R exim: /dkim /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
 	# Forward logs to docker log collector
 	&& ln -sf /dev/stdout /var/log/exim/main \
