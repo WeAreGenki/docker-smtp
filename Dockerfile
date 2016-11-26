@@ -1,6 +1,6 @@
 # Exim based SMTP image for production
 
-# FIXME: When the exim package enter the stable release, update this!
+# FIXME: When the exim package enters the stable release, update this!
 FROM alpine:edge
 MAINTAINER Max Milton <max@wearegenki.com>
 
