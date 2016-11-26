@@ -7,8 +7,8 @@ fi
 
 # Make exim become pid 1 and switch to exim user
 if [ "$1" = 'exim' ] && [ "$(id -u)" = '0' ]; then
-	id -u >> /dev/stdout
-  exec su-exec exim "$0" "$@"
+  # exec su-exec exim "$0" "$@"
+	true
 fi
 
 exec "$@"
