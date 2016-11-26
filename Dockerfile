@@ -16,6 +16,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& ln -sf /dev/stdout /var/log/exim/main \
 	&& ln -sf /dev/stderr /var/log/exim/panic \
 	&& ln -sf /dev/stderr /var/log/exim/reject \
+	\
 	&& chown -R exim /var/log/exim /usr/lib/exim /var/spool/exim \
 	&& chmod 0550 /usr/sbin/exim \
   && setcap cap_net_bind_service=+ep /usr/sbin/exim \
