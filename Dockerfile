@@ -5,7 +5,7 @@ FROM alpine:edge
 MAINTAINER Max Milton <max@wearegenki.com>
 
 # FIXME: Once the exim package is out of testing, update this!
-RUN set -se echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
 		su-exec \
@@ -14,8 +14,8 @@ RUN set -se echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
 	# Forward logs to docker log collector
-	&& ln -sfv /dev/stdout /var/log/exim/main \ # FIXME: Temporary workaround
-	&& ln -sfv /dev/stderr /var/log/exim/main \
+	# && ln -sf /dev/stdout /var/log/exim/main \ # FIXME: Temporary workaround
+	&& ln -sf /dev/stderr /var/log/exim/main \
 	&& ln -sf /dev/stderr /var/log/exim/panic \
 	&& ln -sf /dev/stderr /var/log/exim/reject \
 	\
@@ -36,8 +36,6 @@ LABEL org.label-schema.version=$VERSION \
 			org.label-schema.vcs-ref=$VCS_REF \
 			org.label-schema.vcs-url="https://github.com/WeAreGenki/smtp" \
 			org.label-schema.vendor="We Are Genki"
-
-WORKDIR /var/log/exim
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
