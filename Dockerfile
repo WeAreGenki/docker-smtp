@@ -19,7 +19,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& chown -R exim /var/log/exim /usr/lib/exim /var/spool/exim \
 	&& chmod 0550 /usr/sbin/exim \
   && setcap cap_net_bind_service=+ep /usr/sbin/exim \
-	&& apk del .build-deps \
+	&& apk del --purge .build-deps \
 	\
 	# Unset SUID on all executables
 	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
