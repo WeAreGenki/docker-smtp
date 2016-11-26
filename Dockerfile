@@ -16,7 +16,7 @@ LABEL org.label-schema.version=$VERSION \
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
-		# su-exec \
+		su-exec \
 	&& apk add --no-cache --virtual .build-deps \
 		libcap \
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
@@ -36,10 +36,11 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 
 COPY exim.conf /etc/exim/exim.conf
 
-USER exim
-EXPOSE 25
+WORKDIR /var/spool/exim
 
-# COPY docker-entrypoint.sh /usr/local/bin/
-# ENTRYPOINT ["docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+EXPOSE 25
 
 CMD ["exim", "-bdf", "-q15m"]
