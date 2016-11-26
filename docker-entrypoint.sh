@@ -9,6 +9,7 @@ fi
 if [ "$1" = 'exim' ] && [ "$(id -u)" = '0' ]; then
 	# chown -R exim: /var/log/exim /usr/lib/exim /var/spool/exim
   # exec su-exec exim "$0" "$@"
+	echo "1"
 fi
 
 exec "$@"
