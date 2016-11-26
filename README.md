@@ -29,6 +29,8 @@ docker run -d \
 
 **NOTE:** The separating delimiters are different for RELAY_TO_DOMAINS (: colons) and RELAY_FROM_HOSTS (; semicolons). Your username and password are probably your API key.
 
+Port 25 is open to your internal Docker network. If you need to expose this publicly, so it's possible to connect from a different network, add `-p 25:25/tcp` to your docker run command.
+
 ## Licence
 
 ISC. See [LICENCE.md](https://github.com/WeAreGenki/docker-smtp/blob/master/LICENCE.md).
