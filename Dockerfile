@@ -8,10 +8,10 @@ MAINTAINER Max Milton <max@wearegenki.com>
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
+	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
-		# Forward logs to docker log collector
-		&& mkdir -p /var/log/exim \
-		&& ln -sf /dev/stdout /var/log/exim/mainlog \
+	# Forward logs to docker log collector
+	&& ln -sf /dev/stdout /var/log/exim/mainlog \
 	\
 	# Unset SUID on all executables
 	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
