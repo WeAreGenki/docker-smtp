@@ -6,9 +6,9 @@ if [ "${1#-}" != "$1" ]; then
 fi
 
 # Make exim become pid 1 and switch to exim user
-if [ "$1" = 'exim' ] && [ "$(id -u)" = '0' ]; then
-  # exec su-exec exim "$0" "$@"
-	true
+# if [ "$1" = 'exim' ] && [ "$(id -u)" = '0' ]; then
+if [ "$1" = 'exim' ]; then
+  exec su-exec exim "$0" "$@"
 fi
 
 exec "$@"
