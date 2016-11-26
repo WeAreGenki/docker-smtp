@@ -18,7 +18,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& ln -sf /dev/stderr /var/log/exim/main \
 	&& ln -sf /dev/stderr /var/log/exim/panic \
 	&& ln -sf /dev/stderr /var/log/exim/reject \
-	chown -R exim /var/log/exim /usr/lib/exim /var/spool/exim \
+	&& chown -R exim /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
 	&& setcap cap_net_bind_service=+ep /usr/sbin/exim \
 	&& apk del --purge .build-deps \
