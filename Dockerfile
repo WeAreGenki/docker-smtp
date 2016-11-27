@@ -8,7 +8,6 @@ MAINTAINER Max Milton <max@wearegenki.com>
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
-		su-exec \
 	&& apk add --no-cache --virtual .build-deps \
 		libcap \
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
