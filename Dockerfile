@@ -4,6 +4,14 @@
 FROM alpine:edge
 MAINTAINER Max Milton <max@wearegenki.com>
 
+ARG VERSION
+ARG VCS_REF
+
+LABEL org.label-schema.version=$VERSION \
+			org.label-schema.vcs-ref=$VCS_REF \
+			org.label-schema.vcs-url="https://github.com/WeAreGenki/smtp" \
+			org.label-schema.vendor="We Are Genki"
+
 # FIXME: Once the exim package is out of testing, update this!
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache --virtual .smtp-rundeps \
@@ -22,14 +30,6 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
 
 COPY exim.conf /etc/exim/exim.conf
-
-ARG VERSION
-ARG VCS_REF
-
-LABEL org.label-schema.version=$VERSION \
-			org.label-schema.vcs-ref=$VCS_REF \
-			org.label-schema.vcs-url="https://github.com/WeAreGenki/smtp" \
-			org.label-schema.vendor="We Are Genki"
 
 USER exim
 EXPOSE 25
