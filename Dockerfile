@@ -28,6 +28,6 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 COPY exim.conf /etc/exim/exim.conf
 
 USER exim
-EXPOSE 25
+EXPOSE 2525
 
 CMD ["exim", "-bdf", "-q15m"]
