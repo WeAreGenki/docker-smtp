@@ -1,6 +1,6 @@
 # SMTP Relay Docker Image
 
-[![](https://images.microbadger.com/badges/image/wearegenki/smtp.svg)](https://microbadger.com/images/wearegenki/smtp "Get your own image badge on microbadger.com") [![GitHub Tag](https://img.shields.io/github/tag/wearegenki/smtp.svg)](https://registry.hub.docker.com/u/wearegenki/smtp/)
+[![](https://images.microbadger.com/badges/image/wearegenki/smtp.svg)](https://microbadger.com/images/wearegenki/smtp "Get your own image badge on microbadger.com") [![GitHub Tag](https://img.shields.io/github/tag/wearegenki/docker-smtp.svg)](https://registry.hub.docker.com/u/wearegenki/smtp/)
 
 Minimal SMTP relay docker image using Exim4 running on an Alpine Linux base. The default configuration is as a smarthost relay — for sending emails from your docker cluster to an email delivery service like Sparkpost, SendGrid, or Amazon Simple Email Service.
 
