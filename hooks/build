@@ -1,6 +1,0 @@
-#!/bin/sh
-
-docker build \
-  --build-arg VERSION="$DOCKER_TAG" \
-  --build-arg VCS_REF="$GIT_SHA1" \
-  -t "$IMAGE_NAME" .
