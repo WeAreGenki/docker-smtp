@@ -1,6 +1,6 @@
 # SMTP Relay Docker Image
 
-[![](https://images.microbadger.com/badges/image/wearegenki/smtp.svg)](https://microbadger.com/images/wearegenki/smtp "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own commit badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/wearegenki/smtp.svg)](https://microbadger.com/images/wearegenki/smtp "Get your own image badge on microbadger.com") [![GitHub Tag](https://img.shields.io/github/tag/wearegenki/smtp.svg)](https://registry.hub.docker.com/u/wearegenki/smtp/)
 
 Minimal SMTP relay docker image using Exim4 running on an Alpine Linux base. The default configuration is as a smarthost relay — for sending emails from your docker cluster to an email delivery service like Sparkpost, SendGrid, or Amazon Simple Email Service.
 
@@ -27,11 +27,11 @@ docker run -d \
   wearegenki/smtp:latest
 ```
 
-**NOTES:**
+#### NOTES:
 
 1. The container listens for incoming connections on port `2525` (high port number so the container doesn't need the `NET_BIND_SERVICE` capability).
-2. Port 2525 is open to your internal Docker network. If you need to expose this publicly, so it's possible to connect from a different network, add `-p 2525:2525/tcp` to your docker run command.
-3. The separating delimiters are different for RELAY_TO_DOMAINS (`:` colons) and RELAY_FROM_HOSTS (`;` semicolons).
+2. Port 2525 is open to your internal Docker network. If you need to expose this publicly to connect from a different network add `-p 2525:2525/tcp` to your docker run command.
+3. The separating delimiters are different for LOCAL_DOMAINS or RELAY_TO_DOMAINS (`:` colons) and RELAY_FROM_HOSTS (`;` semicolons).
 
 ## Licence
 
