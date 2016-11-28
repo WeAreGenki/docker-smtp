@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/wearegenki/smtp.svg)](https://microbadger.com/images/wearegenki/smtp "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/wearegenki/smtp.svg)](http://microbadger.com/images/wearegenki/smtp "Get your own commit badge on microbadger.com")
 
-Minimal SMTP relay docker using Exim4 running on an Alpine Linux base. The default configuration is as a smarthost relay — for sending emails from your docker cluster to an email delivery service like Sparkpost, SendGrid, or Amazon Simple Email Service.
+Minimal SMTP relay docker image using Exim4 running on an Alpine Linux base. The default configuration is as a smarthost relay — for sending emails from your docker cluster to an email delivery service like Sparkpost, SendGrid, or Amazon Simple Email Service.
 
 Thanks to Alpine Linux the _uncompressed_ image size is a tiny 8 MB (compared to 175 MB using Debian)!
 
@@ -27,9 +27,11 @@ docker run -d \
   wearegenki/smtp:latest
 ```
 
-**NOTE:** The separating delimiters are different for RELAY_TO_DOMAINS (: colons) and RELAY_FROM_HOSTS (; semicolons). Your username and password are probably your API key.
+**NOTES:**
 
-Port 25 is open to your internal Docker network. If you need to expose this publicly, so it's possible to connect from a different network, add `-p 25:25/tcp` to your docker run command.
+1. The container listens for incoming connections on port `2525` (high port number so the container doesn't need the `NET_BIND_SERVICE` capability).
+2. Port 2525 is open to your internal Docker network. If you need to expose this publicly, so it's possible to connect from a different network, add `-p 2525:2525/tcp` to your docker run command.
+3. The separating delimiters are different for RELAY_TO_DOMAINS (`:` colons) and RELAY_FROM_HOSTS (`;` semicolons).
 
 ## Licence
 

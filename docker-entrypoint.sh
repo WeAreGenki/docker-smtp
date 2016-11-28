@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # If CMD starts with an option, prepend exim
 if [ "${1#-}" != "$1" ]; then

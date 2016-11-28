@@ -16,15 +16,11 @@ LABEL org.label-schema.version=$VERSION \
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache --virtual .smtp-rundeps \
 		exim \
-	&& apk add --no-cache --virtual .build-deps \
-		libcap \
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
 	&& ln -sf /dev/stdout /var/log/exim/main \
 	&& ln -sf /dev/stderr /var/log/exim/panic \
 	&& ln -sf /dev/stderr /var/log/exim/reject \
 	&& chown -R exim /var/log/exim /usr/lib/exim /var/spool/exim \
-	&& setcap cap_net_bind_service=+ep /usr/sbin/exim \
-	&& apk del --purge .build-deps \
 	\
 	# Unset SUID on all executables
 	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
