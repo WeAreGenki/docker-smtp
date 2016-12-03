@@ -21,7 +21,6 @@ docker run -d \
   -e RELAY_FROM_HOSTS="192.168.0.0/16 ; *.yourdomain.com" \
   -e SMARTHOST_HOST="smtp.sparkpostmail.com" \
   -e SMARTHOST_PORT="587" \
-  -e SMARTHOST_PUBLIC_NAME="LOGIN" \
   -e SMARTHOST_USERNAME="SMTP_Injection" \
   -e SMARTHOST_PASSWORD="your_sparkpost_api_token" \
   wearegenki/smtp:latest
