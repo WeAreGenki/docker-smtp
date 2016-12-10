@@ -13,8 +13,8 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	&& ln -sf /dev/stderr /var/log/exim/reject \
 	&& chown -R exim /var/log/exim /usr/lib/exim /var/spool/exim \
 	\
-	# Unset SUID on all executables
-	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
+	# Unset SUID on all files
+	&& for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
 
 COPY exim.conf /etc/exim/exim.conf
 
