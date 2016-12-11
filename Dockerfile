@@ -5,7 +5,8 @@ FROM alpine:edge
 MAINTAINER Max Milton <max@wearegenki.com>
 
 # FIXME: Once the exim package is out of testing, update this!
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN set -xe \
+	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache exim \
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
 	&& ln -sf /dev/stdout /var/log/exim/main \
