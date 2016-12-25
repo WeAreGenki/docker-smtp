@@ -6,8 +6,8 @@ LABEL MAINTAINER="Max Milton <max@wearegenki.com>"
 
 # FIXME: Once the exim package is out of testing, update this!
 RUN set -xe \
-	&& addgroup -g 1333 -S exim \
-	&& adduser -D -u 1333 -S -h /var/spool/exim -s /sbin/nologin -G exim exim \
+	&& addgroup -g 3013 -S exim \
+	&& adduser -D -u 3013 -S -h /var/spool/exim -s /sbin/nologin -G exim exim \
 	&& mkdir -p /var/log/exim /usr/lib/exim /var/spool/exim \
 	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
 	&& apk add --no-cache exim \
