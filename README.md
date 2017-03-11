@@ -40,4 +40,6 @@ ISC. See [LICENCE.md](https://github.com/WeAreGenki/docker-smtp/blob/master/LICE
 
 Proudly made by Max Milton &lt;<max@wearegenki.com>&gt;.
 
+-----
+
 &copy; We Are Genki
