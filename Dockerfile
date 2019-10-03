@@ -1,7 +1,7 @@
 # Exim based SMTP image for production
 
 # FIXME: When the exim package enters the stable release, update this!
-FROM alpine:edge@sha256:dae909606f734c78971984316fbd8a68541feb33bf703a01621d7d8ffd47e7a9
+FROM alpine:edge@sha256:6b53bb87c752dfb006c8a4746f5dafcf1d121d53d569dd450dffceacfce66a33
 LABEL MAINTAINER="Max Milton <max@wearegenki.com>"
 
 # FIXME: Once the exim package is out of testing, update this!
